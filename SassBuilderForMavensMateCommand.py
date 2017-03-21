@@ -99,16 +99,33 @@ def load_settings(project_path):
     except:
         return None
 
+def create_resource_xml(path, name):
+    resource_xml = '<?xml version="1.0" encoding="UTF-8"?><StaticResource xmlns="http://soap.sforce.com/2006/04/metadata"><cacheControl>Public</cacheControl><contentType>image/jpeg</contentType><description>Access Canberra Logo</description></StaticResource>'
+    xml_full_path = path + '/' + name + '.resource-meta.xml'
+    with open(xml_full_path, "w") as f:
+        f.write(resource_xml)
+
 # @func compile_sass
 # @Description
 #
 def compile_sass(files, settings):
     compiled_files = []
     for f in files:
+
         info = path_info(f)
 
+        file_name = info['name']
+        full_file_path = info['path']
+
+        # check if the user wants to force the compilation of one particular file
+        # instead of the file that he is saving
+        if 'force_compile_file_name' in settings:
+            if settings['force_compile_file_name']:
+                file_name, file_extension = os.path.splitext(settings['force_compile_file_name'])
+                full_file_path = info['root'] + '/' + file_name + file_extension
+            
         srcp = os.path.join(info['root'], settings['output_path'])
-        name = '.'.join([info['name'], settings['output_extension']])
+        name = '.'.join([file_name, settings['output_extension']])
 
         path = os.path.join(srcp, name)
 
@@ -137,7 +154,12 @@ def compile_sass(files, settings):
 
         rules = ' '.join(rules)
 
-        sass = sass.format(info['path'], path, rules,
+        # Check if the user wants to generate a resource-metadata.xml file
+        if 'force_compile_file_name' in settings:
+            if settings['generate_resource_xml_file']:
+                create_resource_xml(info['root'], file_name)
+
+        sass = sass.format(full_file_path, path, rules,
                            settings['options']['style'])
 
         sass = Popen(sass, shell=True, cwd=info['root'], stdout=PIPE, stderr=PIPE)
