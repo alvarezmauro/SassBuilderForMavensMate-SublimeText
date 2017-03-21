@@ -33,18 +33,11 @@ If a configuration file is found, this plugin will use it to compile the SASS/SC
 | Option  | Description | Values |
 | ------- | ----------- | ------ |
 | project_path | Name of the folder from where you want to read the SASS/SCSS files | (string) Folder path (empty == folder that contains the configuration file)|
-
 | output_path | Name of the folder where you want to save the compiled version of the SASS/SCSS files | (string) Folder path (empty == folder that contains the configuration file) |
-
-| ignore_path | Name of the folder that you want to ignore | (string) Folder path |
-
+| ignore_path | Name of the folder that you want to ignore | (string) Relative folder path |
 | output_extension | Extension that you want to use for the compiled SASS/SCSS file | (string) Extension name (e.g. css, resource) |
-
-| force_compile_file_name | Use it if instead of compile the file that you are saving you want to compile an spepecific file | (string) file name with extension |
-
-
+| force_compile_file_name | Use it if instead of compile the file that you are saving you want to compile a specific file | (string) file name with extension |
 | generate_resource_xml_file | Generate a .resource-meta.xml file. This is useful if you want to create an static resource (check the examples of how to use it) | (bool) |
-
 | Options | Object with all the SASS options | (Object) Object with the SASS configuration |
 
 ## Use cases
