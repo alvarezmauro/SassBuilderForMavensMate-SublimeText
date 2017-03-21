@@ -1,11 +1,11 @@
 # SassBuilderForMavensMate-SublimeText
 
-Sublime Text SASS compiler for Salesforce developers. Based on @bnlucas plugin SassBuilder
+Sublime Text SASS compiler for Salesforce developers (Based on @bnlucas sublimetext plugin SassBuilder)
 
 ## How it works?
-Every time you save/update a SASS/SCSS file, this plugin will check if there is a "local" configuration file (.SassBuilderForMavensMate-config.json) wich should be in the same folder that contains the file that you are saving/updating. If there isn't, the plugin will check if there is a "global" configuration file, wich should be located in the root folder of the mavensMate project.
+Every time you update a SASS/SCSS file, this plugin will check if there is a "local" configuration file (.SassBuilderForMavensMate-config.json) wich should be in the same folder that contains the file that you are updating. If there isn't a configuration file there, this plugin will check if there is a "global" configuration file, wich should be located in the root folder of your mavensMate project.
 
-If a configuration file is found, this plugin will be use it to compile the SASS/SCSS file and then mavensMate will compile it (upload it to your salesforce project).
+If a configuration file is found, this plugin will use it to compile the SASS/SCSS file and save it. Once the file is saved, the sublimetext plugin for mavensMate will compile it (upload it to your salesforce project).
 
 ## Configuration file
 
@@ -14,7 +14,9 @@ If a configuration file is found, this plugin will be use it to compile the SASS
     "project_path": "",
     "output_path": "",
     "ignore_path": "",
-    "output_extension": "",
+    "output_extension": "css",
+    "force_compile_file_name": "",
+    "generate_resource_xml_file": false,
     "options": {
         "cache":         false,
         "debug":         false,
@@ -30,10 +32,19 @@ If a configuration file is found, this plugin will be use it to compile the SASS
 
 | Option  | Description | Values |
 | ------- | ----------- | ------ |
-| project_path | Name of the folder from where you want to read the SASS/SCSS files | (string) Folder path |
-| output_path | Name of the folder where you want to save the compiled version of the SASS/SCSS files | (string) Folder path |
-| ignore_path | Name of the folder from where you want to ignore | (string) Folder path |
+| project_path | Name of the folder from where you want to read the SASS/SCSS files | (string) Folder path (empty == folder that contains the configuration file)|
+
+| output_path | Name of the folder where you want to save the compiled version of the SASS/SCSS files | (string) Folder path (empty == folder that contains the configuration file) |
+
+| ignore_path | Name of the folder that you want to ignore | (string) Folder path |
+
 | output_extension | Extension that you want to use for the compiled SASS/SCSS file | (string) Extension name (e.g. css, resource) |
+
+| force_compile_file_name | Use it if instead of compile the file that you are saving you want to compile an spepecific file | (string) file name with extension |
+
+
+| generate_resource_xml_file | Generate a .resource-meta.xml file. This is useful if you want to create an static resource (check the examples of how to use it) | (bool) |
+
 | Options | Object with all the SASS options | (Object) Object with the SASS configuration |
 
 ## Use cases
