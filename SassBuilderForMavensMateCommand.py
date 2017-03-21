@@ -120,7 +120,7 @@ def compile_sass(files, settings):
         # check if the user wants to force the compilation of one particular file
         # instead of the file that he is saving
         if 'force_compile_file_name' in settings:
-            if settings['force_compile_file_name']:
+            if settings['force_compile_file_name'] and settings['force_compile_file_name'] != "":
                 file_name, file_extension = os.path.splitext(settings['force_compile_file_name'])
                 full_file_path = info['root'] + '/' + file_name + file_extension
             
@@ -217,9 +217,20 @@ class SassBuilderForMavensMateCommand(sublime_plugin.EventListener):
             #t = Thread(target=compile_sass, args=(files, settings))
             #t.start()
 
-            if not settings['ignore_path']:
-                compile_sass(files, settings)
-            else:
-                temp_ignore_folder = project_folder + '/' + settings['ignore_path']
-                if temp_ignore_folder not in info['root']: 
+            # Check if the property "ignore_path" is in the configuration file
+            if 'ignore_path' in settings:
+                # If the property "ignore_path" is not null and is not empty ("")
+                if settings['ignore_path'] and settings['ignore_path'] != "":
+                    # Build and string with the folder path of the folder that the user wants to ignore
+                    temp_ignore_folder = project_folder + '/' + settings['ignore_path']
+                    
+                    # compile the SASS/CSS file if the file that user is saving isn't inside 
+                    # of the folder that user wants to ignore
+                    if temp_ignore_folder not in info['root']: 
+                        compile_sass(files, settings)
+                else:
+                    # If the property "ignore_path" is null or empty (""), compile the SASS/CSS file
                     compile_sass(files, settings)
+            else:
+                # If the property "ignore_path" doesn't exist, compile the SASS/CSS file
+                compile_sass(files, settings)

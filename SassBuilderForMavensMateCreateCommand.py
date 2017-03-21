@@ -7,6 +7,8 @@ skeleton = '''{
     "output_path": "",
     "ignore_path": "",
     "output_extension": "css",
+    "force_compile_file_name": "",
+    "generate_resource_xml_file": false,
     "options": {
         "cache":         false,
         "debug":         false,
