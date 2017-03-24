@@ -2,6 +2,6 @@
 	{ "caption": "-" },
 	{
 		"caption": "Sass Builder For Mavens Mate - Config",
-		"command": "sass_builder_for_mavens_mate_create_command", "args": { "paths": [] }
+		"command": "sass_builder_for_mavens_mate_create", "args": { "paths": [] }
 	}
 ]
