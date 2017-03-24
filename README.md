@@ -40,10 +40,16 @@ If a configuration file is found, this plugin will use it to compile the SASS/SC
 | generate_resource_xml_file | Generate a .resource-meta.xml file. This is useful if you want to create an static resource (check the examples of how to use it) | (bool) |
 | Options | Object with all the SASS options | (Object) Object with the SASS configuration |
 
-## Use cases
+
+## Install with Sublime Package Control
+
+1. Add this repo using "Package Control: Add Repository" https://github.com/alvarezmauro/SassBuilderForMavensMate-SublimeText
+2. You can then add this package using Package Control as usual. Find "Package Control: Add Package" and search for "SassBuilderForMavensMate-SublimeText"
+
+## Examples of how to use it
 
 ### You want to use SASS/SCSS for one of your lighning component
-Just create a config file in the folder of your lighning component with the following configuration:
+Just create a configuration file (.SassBuilderForMavensMate-config.json) in the folder of your lightning component with the following:
 ```json
 {
     "project_path": "",
@@ -59,9 +65,10 @@ Just create a config file in the folder of your lighning component with the foll
     }
 }
 ```
+Now everytime you save a SASS/CSS file located in that folder, it will be compiled and uploaded to your Salesforce thanks to MavensMate.
 
 ### You want to use SASS/SCSS for all of your lighning component
-Easy, create a config file in the root folder of your mavensMate project with the following configuration:
+Easy, create a configuration file (.SassBuilderForMavensMate-config.json) in the root folder of your MavensMate project with the following configuration:
 ```json
 {
     "project_path": "",
@@ -77,12 +84,14 @@ Easy, create a config file in the root folder of your mavensMate project with th
     }
 }
 ```
+Now everytime you save a SASS/CSS file, it will be compiled and uploaded to your Salesforce thanks to MavensMate.
 
-### You want to use SASS/SCSS to create a static resource (very usefull)
+
+### You want to use SASS/SCSS to create a static resource (very usefull to create your own CSS Framework)
 This is one of the main reasons why I created this plugin. If you want to use a "global CSS file" for your entire projects, follow the following steps:
 
 - Create a folder in the root level of your MavensMate Project (i.e.: "my-css-framework")
-- Create a your SASS/SCSS framework inside of that folder:
+- Create your SASS/SCSS framework inside of that folder:
     .
     ├── src
     └── my-css-framework
@@ -96,8 +105,11 @@ This is one of the main reasons why I created this plugin. If you want to use a 
 ```json
 {
     "project_path": "",
-    "output_path": "../src/staticresources/",
+    "output_path": "../src/staticresources",
+    "ignore_path": "",
     "output_extension": "resource",
+    "force_compile_file_name": "my-css-framework.scss",
+    "generate_resource_xml_file": true,
     "options": {
         "cache":         false,
         "debug":         false,
@@ -126,13 +138,6 @@ This is one of the main reasons why I created this plugin. If you want to use a 
 }
 ```
 
-- Create a static resource using the development console with the name of your framework (i.e.: "my-css-framework")
+- Include your static resource in your project
 
-And that's it, now everytime you modify your SASS/SCSS framework, this one will be compiled, saved into the resources folder and compiled/uploaded into your salesforce project
-
-
-## Install with Sublime Package Control
-1. Add this repo using "Package Control: Add Repository" https://github.com/alvarezmauro/SassBuilderForMavensMate-SublimeText
-2. You can then add this package using Package Control as usual. Find "Package Control: Add Package" and search for "SassBuilderForMavensMate-SublimeText"
-
-
+Done! now you can use SASS on each individual lightning component and use your SASS/SCSS framework for your whole project.
