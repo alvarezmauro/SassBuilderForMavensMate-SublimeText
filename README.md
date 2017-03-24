@@ -90,16 +90,18 @@ Now everytime you save a SASS/CSS file, it will be compiled and uploaded to your
 ### You want to use SASS/SCSS to create a static resource (very usefull to create your own CSS Framework)
 This is one of the main reasons why I created this plugin. If you want to use a "global CSS file" for your entire projects, follow the following steps:
 
-- Create a folder in the root level of your MavensMate Project (i.e.: "my-css-framework")
+- Create a folder in the root level of your MavensMate Project (i.e.: "myCssFramework")
 - Create your SASS/SCSS framework inside of that folder:
     .
     ├── src
-    └── my-css-framework
-            ├── my-css-framework.scss                # Main SASS/SCSS file wich will include all the other SASS/SCSS files of your framework
+    └── myCssFramework
+            ├── myCssFramework.scss                # Main SASS/SCSS file wich will include all the other SASS/SCSS files of your framework
             ├── buttons.scss
             ├── inputs.scss
             ├── fonts.scss
             └── etc...
+
+    ** REMEMBER: Files uploaded to static resources should use characteres only! (that's why I use camelCase to name them)
 
 - Create a configuration file in your SASS/SCSS framework folder with the following content:
 ```json
@@ -108,7 +110,7 @@ This is one of the main reasons why I created this plugin. If you want to use a 
     "output_path": "../src/staticresources",
     "ignore_path": "",
     "output_extension": "resource",
-    "force_compile_file_name": "my-css-framework.scss",
+    "force_compile_file_name": "myCssFramework.scss",
     "generate_resource_xml_file": true,
     "options": {
         "cache":         false,
@@ -125,7 +127,7 @@ This is one of the main reasons why I created this plugin. If you want to use a 
 {
     "project_path": "",
     "output_path": "",
-    "ignore_path": "my-css-framework",
+    "ignore_path": "myCssFramework",
     "output_extension": "css",
     "options": {
         "cache":         false,

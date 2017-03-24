@@ -157,7 +157,7 @@ def compile_sass(files, settings):
         # Check if the user wants to generate a resource-metadata.xml file
         if 'force_compile_file_name' in settings:
             if settings['generate_resource_xml_file']:
-                create_resource_xml(info['root'], file_name)
+                create_resource_xml(srcp, file_name)
 
         sass = sass.format(full_file_path, path, rules,
                            settings['options']['style'])
