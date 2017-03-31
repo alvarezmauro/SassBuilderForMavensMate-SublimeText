@@ -101,10 +101,10 @@ def load_settings(project_path):
 
 def create_resource_xml(path, name):
     resource_xml = '''<?xml version="1.0" encoding="UTF-8"?>
-        <StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
         <cacheControl>Public</cacheControl>
         <contentType>text/css</contentType>
-        </StaticResource>'''
+    </StaticResource>'''
     xml_full_path = path + '/' + name + '.resource-meta.xml'
     with open(xml_full_path, "w") as f:
         f.write(resource_xml)
