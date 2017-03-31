@@ -92,6 +92,8 @@ This is one of the main reasons why I created this plugin. If you want to use a 
 
 - Create a folder in the root level of your MavensMate Project (i.e.: "myCssFramework")
 - Create your SASS/SCSS framework inside of that folder:
+
+```
     .
     ├── src
     └── myCssFramework
@@ -100,6 +102,7 @@ This is one of the main reasons why I created this plugin. If you want to use a 
             ├── inputs.scss
             ├── fonts.scss
             └── etc...
+```
 
     ** REMEMBER: Files uploaded to static resources should use characteres only! (that's why I use camelCase to name them)
 
